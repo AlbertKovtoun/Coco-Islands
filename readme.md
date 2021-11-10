@@ -1,4 +1,4 @@
-# Coco Islands experience
+# Webpack config for modern web projects + three.js
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/) and run the following commands:
@@ -14,4 +14,4 @@ npm run dev
 npm run build
 ```
 
-Made by Albert Kovtoun, CEO of [Suro Development](https://www.suro.tech/).
+Made by Albert Kovtoun
