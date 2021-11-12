@@ -3,10 +3,13 @@ import { Camera } from "./Camera"
 import { Island } from "./Island"
 import { Renderer } from "./Renderer"
 import { Sizes } from "./Sizes"
+import { Sky } from "./Sky"
 
 export const canvas = document.querySelector("canvas.webgl")
 
 export const scene = new THREE.Scene()
+
+export const sky = new Sky()
 
 export const island = new Island()
 
@@ -28,7 +31,9 @@ const tick = () => {
   // Render
   renderer.renderer.render(scene, camera.camera)
 
-  window.requestAnimationFrame(tick)
+  setTimeout(() => {
+    window.requestAnimationFrame(tick)
+  }, 1000 / 60)
 }
 
 tick()
