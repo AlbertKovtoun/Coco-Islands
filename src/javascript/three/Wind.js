@@ -11,18 +11,17 @@ const windMeshPath2 = "/assets/models/Wind2.gltf"
 
 export class Wind {
   constructor() {
-    this.gltfLoader = new GLTFLoader()
+    this.loadingManager = new THREE.LoadingManager(() => {
+      this.setWindTweaks()
+      this.setWindAnimation()
+    })
+    this.gltfLoader = new GLTFLoader(this.loadingManager)
 
     this.wind1
     this.wind2
     this.windMaterial
 
     this.setWind()
-
-    setTimeout(() => {
-      this.setWindTweaks()
-      this.setWindAnimation()
-    }, 100)
   }
 
   setWind() {
@@ -32,7 +31,7 @@ export class Wind {
       transparent: true,
 
       uniforms: {
-        uProgress: { value: 0.5 },
+        uProgress: { value: 0 },
       },
     })
 
@@ -62,15 +61,29 @@ export class Wind {
   }
 
   setWindTweaks() {
-    // pane.addInput(this.windMaterial.uniforms.uProgress, "value", {
-    //   min: 0,
-    //   max: 1,
-    //   step: 0.001,
-    //   label: "windProgress",
-    // })
+    pane.addInput(this.windMaterial.uniforms.uProgress, "value", {
+      min: 0,
+      max: 1,
+      step: 0.001,
+      label: "windProgress",
+    })
   }
 
   setWindAnimation() {
-    console.log(this.wind1)
+    gsap.fromTo(
+      this.windMaterial.uniforms.uProgress,
+      {
+        value: -2,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+      },
+      {
+        value: 2,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+      }
+    )
   }
 }
