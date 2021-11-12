@@ -43,7 +43,7 @@ export class Island {
         this.islandMaterial
       )
 
-      // scene.add(this.island)
+      scene.add(this.island)
     })
   }
 }

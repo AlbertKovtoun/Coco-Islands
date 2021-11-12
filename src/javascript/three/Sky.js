@@ -18,6 +18,11 @@ export class Sky {
         vertexShader: skyVertexShader,
         fragmentShader: skyFragmentShader,
         side: THREE.BackSide,
+
+        uniforms: {
+          uBColor: { value: new THREE.Color(0xffffff) },
+          uTColor: { value: new THREE.Color(0xafdceb) },
+        },
       })
     )
     scene.add(this.sky)
