@@ -28,7 +28,7 @@ export class Sky {
       },
     })
     this.sky = new THREE.Mesh(
-      new THREE.SphereGeometry(5, 30, 30),
+      new THREE.SphereGeometry(5, 50, 50),
       this.skyMaterial
     )
     scene.add(this.sky)
