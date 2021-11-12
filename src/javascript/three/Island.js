@@ -1,5 +1,6 @@
 import * as THREE from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 
 import { scene } from "./Experience"
 import island1VertexShader from "../../shaders/island1/vertex.glsl"
@@ -10,7 +11,11 @@ const islandTexturePath = "/assets/textures/island1HighPolyBaked.png"
 
 export class Island {
   constructor() {
+    this.dracoLoader = new DRACOLoader()
+    this.dracoLoader.setDecoderPath("/assets/draco/")
+
     this.gltfLoader = new GLTFLoader()
+    this.gltfLoader.setDRACOLoader(this.dracoLoader)
     this.textureLoader = new THREE.TextureLoader()
 
     this.setIsland()
@@ -19,7 +24,6 @@ export class Island {
   setIsland() {
     //Load material
     this.islandTexture = this.textureLoader.load(islandTexturePath)
-    // this.islandTexture.encoding = THREE.sRGBEncoding
     this.islandTexture.flipY = false
 
     //Load mesh
@@ -33,6 +37,8 @@ export class Island {
         vertexShader: island1VertexShader,
         fragmentShader: island1FragmentShader,
         transparent: true,
+        // depthWrite: false,
+        // depthTest: false,
         uniforms: {
           uTexture: { value: this.islandTexture },
         },

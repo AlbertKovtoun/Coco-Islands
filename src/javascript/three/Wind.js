@@ -12,13 +12,13 @@ const windMeshPath2 = "/assets/models/Wind2.gltf"
 export class Wind {
   constructor() {
     this.loadingManager = new THREE.LoadingManager(() => {
-      this.setWindTweaks()
       this.setWindAnimation()
     })
     this.gltfLoader = new GLTFLoader(this.loadingManager)
 
     this.wind1
     this.wind2
+    this.wind3
     this.windMaterial
 
     this.setWind()
@@ -43,7 +43,7 @@ export class Wind {
         if (child.isMesh) child.material = this.windMaterial
       })
 
-      this.wind1.position.set(0, 0.5, 0)
+      this.wind1.position.set(0, 0.3, 0)
       scene.add(this.wind1)
     })
 
@@ -55,17 +55,13 @@ export class Wind {
         if (child.isMesh) child.material = this.windMaterial
       })
 
-      this.wind2.position.set(0.5, 1, -1)
+      this.wind2.position.set(0.5, 0.75, -1)
       scene.add(this.wind2)
-    })
-  }
 
-  setWindTweaks() {
-    pane.addInput(this.windMaterial.uniforms.uProgress, "value", {
-      min: 0,
-      max: 1,
-      step: 0.001,
-      label: "windProgress",
+      //Clone wind 2
+      this.wind3 = this.wind2.clone()
+      this.wind3.position.set(-0.6, 0.5, -0.8)
+      scene.add(this.wind3)
     })
   }
 
