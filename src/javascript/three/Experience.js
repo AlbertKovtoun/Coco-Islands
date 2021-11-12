@@ -1,9 +1,12 @@
 import * as THREE from "three"
+import { Pane } from "tweakpane"
 import { Camera } from "./Camera"
 import { Island } from "./Island"
 import { Renderer } from "./Renderer"
 import { Sizes } from "./Sizes"
 import { Sky } from "./Sky"
+
+export const pane = new Pane()
 
 export const canvas = document.querySelector("canvas.webgl")
 

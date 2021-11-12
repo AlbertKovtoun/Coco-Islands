@@ -12,4 +12,5 @@ void main()
     vec4 textureColor = texture2D(uTexture, vUv);
 
     gl_FragColor = vec4(textureColor);
+    gl_FragColor.a = step(ll, 0.5);
 }

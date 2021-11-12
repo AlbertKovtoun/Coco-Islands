@@ -18,7 +18,7 @@ export class Camera {
       0.1,
       100
     )
-    this.camera.position.z = 4
+    this.camera.position.set(0, 0.5, 3)
     scene.add(this.camera)
   }
 
