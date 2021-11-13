@@ -18,6 +18,8 @@ export class Island {
     this.gltfLoader.setDRACOLoader(this.dracoLoader)
     this.textureLoader = new THREE.TextureLoader()
 
+    this.islandMaterial
+
     this.setIsland()
   }
 
@@ -40,6 +42,7 @@ export class Island {
         // depthWrite: false,
         // depthTest: false,
         uniforms: {
+          uTime: { value: 0 },
           uTexture: { value: this.islandTexture },
         },
       })
